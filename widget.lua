@@ -24,6 +24,7 @@ local color_bg_mute = '#532a15' -- background color when muted
 -- End of configuration
 
 local awful = require("awful")
+local beautiful = require("beautiful")
 local pulseaudio = require("apw.pulseaudio")
 
 local p = pulseaudio:Create()
@@ -32,6 +33,12 @@ local pulseWidget = awful.widget.progressbar()
 
 pulseWidget:set_width(width)
 pulseWidget.step = step
+
+-- default colors overridden by Beautiful theme
+color = beautiful.apw_fg_color or color
+color_bg = beautiful.apw_bg_color or color_bg
+color_mute = beautiful.apw_mute_fg_color or color_mute
+color_bg_mute = beautiful.apw_mute_bg_color or color_bg_mute
 
 function pulseWidget.setColor(mute)
 	if mute then
