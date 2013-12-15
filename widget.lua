@@ -58,7 +58,7 @@ local function _update()
 end
 
 function pulseWidget.SetMixer(command)
-   mixer = command
+	mixer = command
 end
 
 function pulseWidget.Up()
@@ -82,15 +82,15 @@ function pulseWidget.Update()
 	 _update()
 end
 
-function pulseWidget.ToggleMixer()
-   awful.util.spawn_with_shell( mixer )
+function pulseWidget.LaunchMixer()
+	awful.util.spawn_with_shell( mixer )
 end
 
 
 -- register mouse button actions
 pulseWidget:buttons(awful.util.table.join(
 		awful.button({ }, 1, pulseWidget.ToggleMute),
-		awful.button({ }, 3, pulseWidget.ToggleMixer),
+		awful.button({ }, 3, pulseWidget.LaunchMixer),
 		awful.button({ }, 4, pulseWidget.Up),
 		awful.button({ }, 5, pulseWidget.Down)
 	)
