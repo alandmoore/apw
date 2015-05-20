@@ -1,3 +1,11 @@
+Note, that…
+-----------
+…this project is not developed any longer. It still works, though. I do not use it any more, nor do I use awesome. I am willing to merge bug fixes and improvements that do not alter the appearance or behaviour. Breaking changes in this sense, I will not merge.
+
+You are welcome to fork this and I will add a link to it in the README.
+Currently known, feature adding forks:
+* [seniorivn/apw](https://github.com/seniorivn/apw)
+
 Awesome Pulseaudio Widget
 =========================
 
@@ -10,7 +18,7 @@ It's compatible with Awesome 3.5.
 First time I'm using Lua. So it might be a little bit quirky.
 
 Get it
-------------
+------
 
 ```sh
 cd $XDG_CONFIG_HOME/awesome/
@@ -18,7 +26,7 @@ git clone https://github.com/mokasin/apw.git
 ```
 
 Use it
------
+------
 
 Just put these line to the appropriate places in
 *$XDG_CONFIG_HOME/awesome/rc.lua*.
@@ -37,8 +45,13 @@ awful.key({ }, "XF86AudioMute",         APW.ToggleMute),
 
 ```
 
-Theme it
---------
+Customize it
+------------
+
+### Theme
+
+*Important:* `beautiful.init` must be called before you `require` apw for
+theming to work.
 
 Just add these variables to your Beautiful theme.lua file and set them
 to whatever colors or gradients you wish:
@@ -53,7 +66,13 @@ theme.apw_mute_bg_color = "#663333"
 --}}}
 
 ```
-*Important:* `beautiful.init` must be called before you `require` apw for theming to work.
+
+### Directly edit widget.lua
+
+You also can customize some properties by editing the configuration variables
+directly in `widget.lua` (i.e. add a margin).
+It is advisable to customize the source file in an own branch. This makes it
+easy to update to a new version of APW via rebasing.
 
 Mixer
 ----
