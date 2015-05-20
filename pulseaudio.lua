@@ -90,7 +90,8 @@ function pulseaudio:SetVolume(vol)
 		vol = 0
 	end
 
-	vol = vol * 0x10000
+	vol = math.floor(vol * 0x10000)
+	
 	-- set…
 	run(cmd .. " set-sink-volume " .. default_sink .. " " .. string.format("0x%x", vol))
 
