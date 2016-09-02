@@ -47,9 +47,8 @@ text_color = beautiful.apw_text_colot or text_color
 
 local p = pulseaudio:Create()
 
-local pulseBar = wibox.widget.progressbar()
+local pulseBar = wibox.widget.progressbar({forced_width=width})
 
-pulseBar:set_width(width)
 pulseBar.step = step
 
 local function make_stack(w1, w2)
