@@ -32,18 +32,29 @@ local text_color    = '#fff' -- color of text
 -- End of configuration
 
 local awful = require("awful")
-local spawn_with_shell = awful.util.spawn_with_shell or awful.spawn.with_shell
+local spawn_with_shell = awful.spawn.with_shell
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local pulseaudio = require("apw.pulseaudio")
 local math = require("math")
+local gears = require("gears")
+
+gears.debug.print_warning('STARTING APW SETUP')
+
 -- default colors overridden by Beautiful theme
-local color = beautiful.apw_fg_color or color
-local color_bg = beautiful.apw_bg_color or color_bg
-local color_mute = beautiful.apw_mute_fg_color or color_mute
-local color_bg_mute = beautiful.apw_mute_bg_color or color_bg_mute
-local show_text = beautiful.apw_show_text or show_text
-local text_color = beautiful.apw_text_color or text_color
+color = beautiful.apw_fg_color or color
+color_bg = beautiful.apw_bg_color or color_bg
+color_mute = beautiful.apw_mute_fg_color or color_mute
+color_bg_mute = beautiful.apw_mute_bg_color or color_bg_mute
+show_text = beautiful.apw_show_text or show_text
+text_color = beautiful.apw_text_color or text_color
+
+
+-- for i, item in ipairs({color, color_bg, color_mute, color_bg_mute, show_text, text_color}) do
+--    gears.debug.print_warning(
+--       i ..': ' .. tostring(item) ..'\n'
+--    )
+-- end
 
 local p = pulseaudio:Create()
 
@@ -92,6 +103,8 @@ function pulseWidget.setColor(mute)
 end
 
 local function _update()
+   --gears.debug.print_warning('volume: '.. p.Volume)
+   --gears.debug.print_warning('mute: ' .. tostring(p.Mute))
     pulseBar:set_value(p.Volume)
     pulseWidget.setColor(p.Mute)
     if show_text then
@@ -101,7 +114,8 @@ local function _update()
 end
 
 function pulseWidget.SetMixer(command)
-    mixer = command
+   mixer = command
+   gears.debug.print_warning("APW mixer set to ".. tostring(command))
 end
 
 function pulseWidget.Up()

@@ -1,10 +1,10 @@
 Note, that…
 -----------
-…this project is not developed any longer. It still works, though. I do not use it any more, nor do I use awesome. I am willing to merge bug fixes and improvements that do not alter the appearance or behaviour. Breaking changes in this sense, I will not merge.
+This is a fork of the original APW widget by mokasin (now unmaintained), ported to work with 4.0.
 
-You are welcome to fork this and I will add a link to it in the README.
-Currently known, feature adding forks:
-* [seniorivn/apw](https://github.com/seniorivn/apw)
+It contains some fixes from the actionless fork and some of my own.
+
+It has a lot of bugs....
 
 Awesome Pulseaudio Widget
 =========================
@@ -13,9 +13,8 @@ Awesome Pulseaudio Widget (APW) is a little widget for
 [Awesome WM](http://awesome.naquadah.org/), using the awful progressbar widget,
 to display default's sink volume and control Pulseaudio.
 
-It's compatible with Awesome 3.5.
+It's compatible with Awesome 4.0.  Well, kind of.  At least, moreso than the original.
 
-First time I'm using Lua. So it might be a little bit quirky.
 
 Get it
 ------
@@ -28,15 +27,19 @@ git clone https://github.com/mokasin/apw.git
 Use it
 ------
 
-Just put these line to the appropriate places in
-*$XDG_CONFIG_HOME/awesome/rc.lua*.
+For some reason, you need to put APW inside a container or it'll eat a big chunk out of your wibar and cover other widgets.
+This needs to be fixed.  Until then, place it inside a container, like so:
 
 ```lua
 -- Load the widget.
 local APW = require("apw/widget")
 
+-- Put it in a container
+local apw_container = wibox.container.background(APW)
+apw_container.forced_width = 40
+
 -- Example: Add to wibox. Here to the right. Do it the way you like it.
-right_layout:add(APW)
+right_layout:add(apw_container)
 
 -- Configure the hotkeys.
 awful.key({ }, "XF86AudioRaiseVolume",  APW.Up),
@@ -59,7 +62,7 @@ to whatever colors or gradients you wish:
 ```lua
 --{{{ APW
 theme.apw_fg_color = {type = 'linear', from = {0, 0}, to={40,0},
-	stops={{0, "#CC8888"}, {.4, "#88CC88"}, {.8, "#8888CC"}}}
+    stops={{0, "#CC8888"}, {.4, "#88CC88"}, {.8, "#8888CC"}}}
 theme.apw_bg_color = "#333333"
 theme.apw_mute_fg_color = "#CC9393"
 theme.apw_mute_bg_color = "#663333"
